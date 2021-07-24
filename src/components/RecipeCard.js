@@ -35,11 +35,11 @@ class RecipeCard extends Component {
 							{title}
 						</Typography>
 					}
-					subheader={new Date(dateUpdated).toLocaleDateString('en-US', {
-						month: 'long',
-						day: 'numeric',
-						year: 'numeric'
-					})}
+					// subheader={new Date(dateUpdated).toLocaleDateString('en-US', {
+					// 	month: 'long',
+					// 	day: 'numeric',
+					// 	year: 'numeric'
+					// })}
 				/>
 				<CardContent>
 					<Typography variant="body1">{description}</Typography>

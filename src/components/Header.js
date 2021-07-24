@@ -32,9 +32,9 @@ class Header extends Component {
 					<Button key="1" component={Link} to="/recipe/new" color="inherit">
 						<AddIcon/>
 					</Button>,
-					<Button key="1" component={Link} to="/login" color="inherit">
-						Login
-					</Button>
+					// <Button key="1" component={Link} to="/login" color="inherit">
+					// 	Login
+					// </Button>
 				];
 			default:
 				return [
