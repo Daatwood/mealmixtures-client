@@ -10,7 +10,7 @@ import {
 	FETCH_RECIPE_FAILURE
 } from './types';
 
-const base = "https://api.mealmixtures.com";
+const base = atob("aHR0cHM6Ly9nOWQ4bmYxd3c5LmV4ZWN1dGUtYXBpLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL2FwaQ==");
 
 export const fetchUser = () => async (dispatch) => {
 	const res = await axios.get(base+'/current_user');
