@@ -60,8 +60,8 @@ class RecipeView extends Component {
 	};
 
 	renderContent() {
-		if (this.props.recipe) {
-			const { user, recipe, classes } = this.props;
+		const { user, recipe, classes } = this.props;
+		if (recipe) {
 			return (
 				<GridContainer>
 					<GridItem xs={12} style={{ textAlign: 'center' }}>
@@ -96,9 +96,11 @@ class RecipeView extends Component {
 					</GridItem>
 				</GridContainer>
 			);
-		} else {
-			return <Loading />;
 		}
+		else if (recipe === null) 
+			return <Loading />;
+		else
+			return	<div>Not found</div>
 	}
 
 	render() {

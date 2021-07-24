@@ -22,7 +22,7 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, active: null, loading: true, error: null };
 		case FETCH_RECIPE_SUCCESS:
 			const { Item } = action.payload
-			return { ...state, active: Item, loading: false, error: null };
+			return { ...state, active: Item || false, loading: false, error: null };
 		case FETCH_RECIPE_FAILURE:
 			error = action.payload || { message: action.payload.message };
 			return { ...state, active: action.payload, error: error, loading: false };
