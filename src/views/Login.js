@@ -7,6 +7,8 @@ import { Typography } from '@material-ui/core';
 import GridContainer from '../components/GridContainer';
 import GridItem from '../components/GridItem';
 
+import googleoauthSignIn from '../components/GoogleLoginButton';
+
 class Login extends Component {
 	render() {
 		return (
@@ -17,9 +19,7 @@ class Login extends Component {
 					</GridItem>
 					<GridItem xs={12} style={{ maxWidth: '345px' }}>
 						<GoogleLoginButton
-							onClick={() => {
-								window.location = '/api/auth/google';
-							}}
+							onClick={googleoauthSignIn}
 						/>
 					</GridItem>
 					{/* WIP Not fully implemented yet*/}

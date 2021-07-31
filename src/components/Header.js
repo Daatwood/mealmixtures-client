@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link, withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, Hidden } from '@material-ui/core';
 import BrandIcon from '@material-ui/icons/Kitchen';
 import { Add as AddIcon } from '@material-ui/icons';
 
-
-import { Link } from 'react-router-dom';
+import * as actions from '../actions';
 
 const styles = {
 	root: {
@@ -25,23 +24,21 @@ const styles = {
 
 class Header extends Component {
 	renderContent() {
-		switch (this.props.auth) {
+		const { auth } = this.props;
+		switch (auth.user) {
 			case null:
 			case false:
 				return [
-					<Button key="1" component={Link} to="/recipe/new" color="inherit">
-						<AddIcon/>
-					</Button>,
-					// <Button key="1" component={Link} to="/login" color="inherit">
-					// 	Login
-					// </Button>
+					<Button key="1" component={Link} to="/login" color="inherit">
+						Login
+					</Button>
 				];
 			default:
-				return [
+				return [ 
 					<Button key="1" component={Link} to="/recipe/new" color="inherit">
 						<AddIcon/>
 					</Button>,
-					<Button key="3" href="/api/logout" color="inherit">
+					<Button key="3" onClick={() => this.props.userLogout(auth.user && auth.user["session"], this.props.history)} color="inherit">
 						Logout
 					</Button>
 				];
@@ -75,4 +72,4 @@ function mapStateToProps({ auth }) {
 	return { auth };
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Header));
+export default connect(mapStateToProps, actions)(withRouter(withStyles(styles)(Header)));

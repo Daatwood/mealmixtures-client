@@ -25,11 +25,11 @@ class RecipeCard extends Component {
 	};
 
 	render() {
-		const { classes, id, title, description, dateUpdated, isOwner, onDelete, favorited } = this.props;
+		const { classes, id, title, description, isOwner, onDelete, favorited } = this.props;
 		return (
 			<Card className={classes.card}>
 				<CardHeader
-					// action={<FavoriteButton favorited={favorited} onFavorite={this.handleFavorite} />}
+					action={<FavoriteButton favorited={favorited} onFavorite={this.handleFavorite} />}
 					title={
 						<Typography variant="headline" color="primary" component={Link} to={`/recipes/${id}`}>
 							{title}

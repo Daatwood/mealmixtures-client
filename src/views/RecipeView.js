@@ -52,7 +52,8 @@ class RecipeView extends Component {
 
 	handleFavorite = (value) => {
 		const { id } = this.props.recipe;
-		value ? this.props.addFavorite(id) : this.props.removeFavorite(id);
+		const { token } = this.props.user;
+		value ? this.props.addFavorite(id, token) : this.props.removeFavorite(id, token);
 	};
 
 	handleDelete = () => {
@@ -70,7 +71,7 @@ class RecipeView extends Component {
 						</Typography>
 					</GridItem>
 					<GridItem xs={6}>
-						{/* <FavoriteButton  style={{margin: '0 5%'}} favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} /> */}
+						<FavoriteButton  style={{margin: '0 5%'}} favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
 					</GridItem>
 					<GridItem xs={6} style={{ textAlign: 'right' }}>
 						<ActionMenu

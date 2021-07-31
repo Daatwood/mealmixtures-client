@@ -36,8 +36,8 @@ class App extends Component {
 					<MuiThemeProvider theme={theme}>
 						<Header />
 						<div className="container">
-							{routes.map((prop, key) => {
-								return <Route exact path={prop.path} key={key} component={prop.component} />;
+							{routes.map((prop, key, fuzzy) => {
+								return <Route exact={!!fuzzy} path={prop.path} key={key} component={prop.component} />;
 							})}
 						</div>
 					</MuiThemeProvider>
