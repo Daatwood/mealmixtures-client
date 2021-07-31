@@ -11,6 +11,9 @@ class TestView extends Component {
 		return (
 			<div style={{ textAlign: 'center', paddingBottom: 20 }}>
 				<p>{JSON.stringify(this.props)}</p>
+				<button onClick={() => this.props.securedTest(this.props.auth.token)}>
+					TEST
+				</button>
 			</div>
 		);
 	}

@@ -12,16 +12,38 @@ import {
 	FAVORITE_RECIPE_ADD
 } from './types';
 
-const base = window.atob("aHR0cHM6Ly9nOWQ4bmYxd3c5LmV4ZWN1dGUtYXBpLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL2FwaQ==");
+const base = 'https://api.mealmixtures.com'
 
-const header = (token) => {
-	return {
-		headers: {
-			'X-Api-Key': token,
-			Authorization: 'Bearer ' + token
-		}
-	}
-}
+const fetchClient = (token) => {
+  const defaultOptions = {
+    baseURL: base,
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  // Create instance
+  let instance = axios.create(defaultOptions);
+
+  // Set the AUTH token for any request
+  instance.interceptors.request.use(function (config) {
+    config.headers.Authorization =  token ? `${token}` : '';
+    return config;
+  });
+
+  return instance;
+};
+
+export const securedTest = (token) => async (dispatch) => {
+	// dispatch({ type: 'test_start', payload: null });
+	// axios.defaults.headers.common['Authorization'] = token;
+	console.log(token)
+	const res = await fetchClient(token).post(base+'/test?debug=true',{}).catch(handleError);
+	// dispatch({ type: 'test_end', payload: res.data });
+};
+
+
 export const fetchUser = (provider, access_token, history) => async (dispatch) => {
 	dispatch({ type: FETCH_USER, payload: {[provider]: access_token} });
 	const token = Buffer.from(access_token, 'binary').toString('base64')
@@ -35,13 +57,8 @@ export const fetchUser = (provider, access_token, history) => async (dispatch) =
 	history.push(res.data.success ? '/dashboard' : '/login')
 };
 export const userLogout = (token, history) => async (dispatch) => {
-	console.log(token)
 	dispatch({ type: LOGOUT });
-	axios.post(base+'/auth/logout',{}, {
-		headers: {
-			Authorization: 'Bearer '+ token
-		}
-	})
+	await fetchClient(token).post(base+'/auth/logout',{}).catch(handleError)
 	history.push('/');
 };
 export const fetchRecipes = () => async (dispatch) => {
@@ -80,7 +97,7 @@ export const deleteRecipe = (id, history) => async (dispatch) => {
 };
 export const addFavorite = (id, token) => async (dispatch) => {
 	dispatch({ type: FAVORITE_RECIPE_ADD, payload: id });
-	const res = await axios.get(base+`/favorites/${id}/add`, header(token) ).catch( (error) => {
+	const res = await fetchClient(token).get(base+`/favorites/${id}/add`).catch( (error) => {
     handleError(error);
 		setTimeout(
 			() => dispatch({ type: FAVORITE_RECIPE_SUB, payload: id }),
@@ -90,7 +107,7 @@ export const addFavorite = (id, token) => async (dispatch) => {
 };
 export const removeFavorite = (id, token) => async (dispatch) => {
 	dispatch({ type: FAVORITE_RECIPE_SUB, payload: id });
-	const res = await axios.get(base+`/favorites/${id}/remove`, header(token) ).catch( (error) => {
+	const res = await fetchClient(token).get(base+`/favorites/${id}/remove` ).catch( (error) => {
     handleError(error);
 		setTimeout(
 			() => dispatch({ type: FAVORITE_RECIPE_ADD, payload: id }),
