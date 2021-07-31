@@ -32,7 +32,7 @@ const styles = (theme) => ({
 
 class RecipeList extends Component {
 	componentDidMount() {
-		this.props.recipesAction();
+		this.props.recipesAction(this.props.user.token);
 	}
 
 	renderRecipes() {
@@ -51,6 +51,7 @@ class RecipeList extends Component {
 					<GridItem key={recipe.id}>
 						<RecipeCard
 							{...recipe}
+							token={user.token}
 							isOwner={isOwner(user, recipe)}
 							favorited={isFavorite(user, recipe)}
 							onDelete={() => this.props.deleteRecipe(recipe.id, this.props.history)}

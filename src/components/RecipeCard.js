@@ -20,8 +20,8 @@ const styles = (theme) => ({
 
 class RecipeCard extends Component {
 	handleFavorite = (value) => {
-		const { id } = this.props;
-		value ? this.props.addFavorite(id) : this.props.removeFavorite(id);
+		const { id, token } = this.props;
+		value ? this.props.addFavorite(id, token) : this.props.removeFavorite(id, token);
 	};
 
 	render() {
