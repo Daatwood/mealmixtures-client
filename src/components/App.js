@@ -28,12 +28,12 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App"  style={{
-				backgroundImage: `url(/images/prep_${ 1+(!!window.location.pathname.match(/recipe/))}.jpeg)`, 
+				backgroundImage: 'url(/images/prep_1.jpeg)', 
 				backgroundAttachment: 'fixed', 
 				backgroundPosition: 'center', 
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
-				minHeight: '820px'
+				minHeight: window.innerHeight || 850
 				}}>
 				<BrowserRouter>
 					<MuiThemeProvider theme={theme}>
