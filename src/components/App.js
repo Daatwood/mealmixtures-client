@@ -25,13 +25,16 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
-	componentDidMount() {
-		// this.props.fetchUser();
-	}
-
 	render() {
 		return (
-			<div className="App">
+			<div className="App"  style={{
+				backgroundImage: `url(/images/prep_${ 1+(!!window.location.pathname.match(/recipe/))}.jpeg)`, 
+				backgroundAttachment: 'fixed', 
+				backgroundPosition: 'center', 
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: 'cover',
+				minHeight: '820px'
+				}}>
 				<BrowserRouter>
 					<MuiThemeProvider theme={theme}>
 						<Header />

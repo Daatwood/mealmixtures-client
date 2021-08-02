@@ -14,7 +14,7 @@ class Dashboard extends Component {
 		return (
 			<GridContainer>
 				<GridItem sm={12} md={6}>
-					<Typography variant="display3">Dashboard</Typography>
+					<Typography variant="display3" style={{color:'white', textShadow: '2px 2px #000000'}}>Dashboard</Typography>
 				</GridItem>
 				<GridItem sm={6} md={3}>
 					<Button variant="raised" color="primary" component={Link} to="/recipe/new">
@@ -27,7 +27,7 @@ class Dashboard extends Component {
 					</Button> */}
 				</GridItem>
 				<GridItem>
-					<RecipeList title="Your Recipes" recipesAction={fetchUserRecipes} />
+					<RecipeList title="" recipesAction={fetchUserRecipes} />
 				</GridItem>
 			</GridContainer>
 		);

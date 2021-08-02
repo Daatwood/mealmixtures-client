@@ -51,7 +51,7 @@ class RecipeList extends Component {
 					<GridItem key={recipe.id}>
 						<RecipeCard
 							{...recipe}
-							token={user.token}
+							user={user}
 							isOwner={isOwner(user, recipe)}
 							favorited={isFavorite(user, recipe)}
 							onDelete={() => this.props.deleteRecipe(recipe.id, this.props.history)}

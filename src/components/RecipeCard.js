@@ -20,26 +20,22 @@ const styles = (theme) => ({
 
 class RecipeCard extends Component {
 	handleFavorite = (value) => {
-		const { id, token } = this.props;
-		value ? this.props.addFavorite(id, token) : this.props.removeFavorite(id, token);
+		const { id, user } = this.props;
+		value ? this.props.addFavorite(id, user.token) : 
+			this.props.removeFavorite(id, user.token);
 	};
 
 	render() {
-		const { classes, id, title, description, isOwner, onDelete, favorited } = this.props;
+		const { classes, id, title, description, isOwner, onDelete, favorited, user } = this.props;
 		return (
 			<Card className={classes.card}>
 				<CardHeader
-					action={<FavoriteButton favorited={favorited} onFavorite={this.handleFavorite} />}
+					action={user.token && <FavoriteButton favorited={favorited} onFavorite={this.handleFavorite} />}
 					title={
 						<Typography variant="headline" color="primary" component={Link} to={`/recipes/${id}`}>
 							{title}
 						</Typography>
 					}
-					// subheader={new Date(dateUpdated).toLocaleDateString('en-US', {
-					// 	month: 'long',
-					// 	day: 'numeric',
-					// 	year: 'numeric'
-					// })}
 				/>
 				<CardContent>
 					<Typography variant="body1">{description}</Typography>

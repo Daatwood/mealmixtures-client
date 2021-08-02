@@ -13,7 +13,7 @@ class RecipeNew extends Component {
 	render() {
 		return (
 			<div>
-				<Typography variant="display3">New Recipe</Typography>
+				<Typography variant="display3" style={{color: 'white', textShadow: '2px 2px #000000'}}>New Recipe</Typography>
 				<RecipeForm onSubmit={this.handleSubmit} />
 			</div>
 		);

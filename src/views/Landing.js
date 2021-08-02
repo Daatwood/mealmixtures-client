@@ -33,8 +33,13 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div style={{ textAlign: 'center' }}>
-				<Typography variant="display3" style={{ letterSpacing: '.5rem' }}>
+			<div style={{ textAlign: 'center',
+				background: '#00796b',
+				opacity: '90%',
+				color: 'white',
+				borderRadius: '18px',
+				}}>
+				<Typography variant="display3" style={{color:'white', letterSpacing: '.5rem' }}>
 					Meal Mixtures
 				</Typography>
 				<Typography variant="headline">Your personal recipe manager.</Typography>

@@ -66,12 +66,12 @@ class RecipeView extends Component {
 			return (
 				<GridContainer>
 					<GridItem xs={12} style={{ textAlign: 'center' }}>
-						<Typography color="primary" variant="display3">
+						<Typography  variant="display3" style={{color: 'white', textShadow: '2px 2px #000000'}}>
 							{this.props.recipe.title}
 						</Typography>
 					</GridItem>
 					<GridItem xs={6}>
-						<FavoriteButton  style={{margin: '0 5%'}} favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
+						{user.token && <FavoriteButton style={{margin: '0 5%'}} favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />}
 					</GridItem>
 					<GridItem xs={6} style={{ textAlign: 'right' }}>
 						<ActionMenu
