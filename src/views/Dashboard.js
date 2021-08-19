@@ -17,9 +17,9 @@ class Dashboard extends Component {
 					<Typography variant="display3" style={{color:'white', textShadow: '2px 2px #000000'}}>Dashboard</Typography>
 				</GridItem>
 				<GridItem sm={6} md={3}>
-					<Button variant="raised" color="primary" component={Link} to="/recipe/new">
+					{this.props.token && <Button variant="raised" color="primary" component={Link} to="/recipe/new">
 						New Recipe
-					</Button>
+					</Button>}
 				</GridItem>
 				<GridItem sm={6} md={3}>
 					{/* <Button style={{float: 'right'}}variant="raised" color="secondary" component={Link} to="/favorites">
@@ -33,5 +33,9 @@ class Dashboard extends Component {
 		);
 	}
 }
-
-export default connect(null, actions)(Dashboard);
+function mapStateToProps({ auth }) {
+	return { 
+		token: auth.token
+	};
+}
+export default connect(mapStateToProps, actions)(Dashboard);

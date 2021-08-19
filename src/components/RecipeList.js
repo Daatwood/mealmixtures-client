@@ -54,7 +54,7 @@ class RecipeList extends Component {
 							user={user}
 							isOwner={isOwner(user, recipe)}
 							favorited={isFavorite(user, recipe)}
-							onDelete={() => this.props.deleteRecipe(recipe.id, this.props.history)}
+							onDelete={() => this.props.deleteRecipe(user.token, recipe.id, this.props.history)}
 							addFavorite={this.props.addFavorite}
 							removeFavorite={this.props.removeFavorite}
 						/>
@@ -93,3 +93,4 @@ function mapStateToProps({ auth, recipes }) {
 }
 
 export default connect(mapStateToProps, actions)(withRouter(withStyles(styles)(RecipeList)));
+RecipeList.displayName = 'RecipeList'

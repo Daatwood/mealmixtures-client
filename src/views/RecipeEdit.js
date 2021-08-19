@@ -13,7 +13,7 @@ class RecipeEdit extends Component {
 	}
 
 	handleSubmit = (values) => {
-		this.props.updateRecipe(values, this.props.history);
+		this.props.updateRecipe(this.props.token, values, this.props.history);
 	};
 
 	renderContent() {
@@ -30,7 +30,11 @@ class RecipeEdit extends Component {
 		);
 	}
 }
-function mapStateToProps({ recipes }) {
-	return { initialValues: recipes.active, loading: recipes.loading };
+function mapStateToProps({ auth, recipes }) {
+	return { 
+		token: auth.token,
+		initialValues: recipes.active, 
+		loading: recipes.loading 
+	};
 }
 export default connect(mapStateToProps, actions)(withRouter(RecipeEdit));

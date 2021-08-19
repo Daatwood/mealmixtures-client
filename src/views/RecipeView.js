@@ -57,7 +57,8 @@ class RecipeView extends Component {
 	};
 
 	handleDelete = () => {
-		this.props.deleteRecipe(this.props.recipe.id, this.props.history);
+		const { token } = this.props.user;
+		this.props.deleteRecipe(token, this.props.recipe.id, this.props.history);
 	};
 
 	renderContent() {

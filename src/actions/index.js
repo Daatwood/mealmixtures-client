@@ -38,7 +38,6 @@ const fetchClient = (token) => {
 export const securedTest = (token) => async (dispatch) => {
 	// dispatch({ type: 'test_start', payload: null });
 	// axios.defaults.headers.common['Authorization'] = token;
-	console.log(token)
 	const res = await fetchClient(token).post(base+'/test?debug=true',{}).catch(handleError);
 	// dispatch({ type: 'test_end', payload: res.data });
 };
@@ -75,18 +74,18 @@ export const fetchRecipe = (id) => async (dispatch) => {
 	const res = await axios.get(base+'/recipes/' + id);
 	dispatch({ type: FETCH_RECIPE_SUCCESS, payload: res.data });
 };
-export const submitRecipe = (values, history) => async (dispatch) => {
-	const res = await axios.put(base+'/recipes', values);
+export const submitRecipe = (token, values, history) => async (dispatch) => {
+	const res = await fetchClient(token).put(base+'/recipes', values);
 	history.push('/recipes/' + res.data.id);
 	dispatch({ type: FETCH_RECIPE_SUCCESS, payload: res.data });
 };
-export const updateRecipe = (values, history) => async (dispatch) => {
-	const res = await axios.put(base+'/recipes/' + values.id, values);
+export const updateRecipe = (token, values, history) => async (dispatch) => {
+	const res = await fetchClient(token).put(base+'/recipes/' + values.id, values);
 	history.push('/recipes/' + res.data.id);
 	dispatch({ type: FETCH_RECIPE_SUCCESS, payload: res.data });
 };
-export const deleteRecipe = (id, history) => async (dispatch) => {
-	const res = await axios.delete(base+'/recipes/' + id);
+export const deleteRecipe = (token, id, history) => async (dispatch) => {
+	const res = await fetchClient(token).delete(base+'/recipes/' + id);
 	history.push('/dashboard');
 };
 export const addFavorite = (id, token) => async (dispatch) => {
