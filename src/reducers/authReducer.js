@@ -19,7 +19,7 @@ export default function(state = INITIAL_STATE, action) {
         loading: false, 
         favorites: payload.favorites, 
         token: payload.session, 
-        email: payload.user['Attributes'].email
+        email: payload.email
       };
     case LOGOUT:
       return INITIAL_STATE;
